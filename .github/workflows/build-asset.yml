@@ -38,6 +38,9 @@ jobs:
         run: |
           echo "NODEJS_VERSION=$(node -p process.versions.node)" >> $env:GITHUB_ENV
           echo "NODEJS_VERSION=$(node -p process.versions.node)" >> "${GITHUB_ENV}"
+      
+      - name: Upgrade NPM
+        run: npm install -g npm
       - run: npm ci
       - uses: actions/setup-python@v2
         with:
