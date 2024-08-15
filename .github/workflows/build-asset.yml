@@ -40,7 +40,9 @@ jobs:
           echo "NODEJS_VERSION=$(node -p process.versions.node)" >> "${GITHUB_ENV}"
 
       - name: Reset Package Lock
-        run: rm package-lock.json
+        run: |
+          rm package-lock.json
+          npm i
       - name: Change NPM version
         run: npm install -g npm@6.14
         
