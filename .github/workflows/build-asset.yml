@@ -8,7 +8,7 @@ on:
       versions:
         description: 'Node.js version'
         required: true
-        default: '[ "lts/*", "18" ]'
+        default: '[ "14.18.0" ]'
   pull_request:
     branches: [ master ]
   push:
@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ windows-latest, macos-latest, ubuntu-latest ]
+        os: [ macos-13 ]
         version: ${{ fromJSON(inputs.versions || '[ "lts/*", "18" ]') }}
     env:
       NODEJS_VERSION: ${{ matrix.version }}
