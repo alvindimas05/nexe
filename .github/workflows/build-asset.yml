@@ -21,7 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ macos-13 ]
-        version: ${{ fromJSON(inputs.versions || '[ "lts/*", "18" ]') }}
+        version: ${{ fromJSON(inputs.versions || '[ "14.18.0" ]') }}
     env:
       NODEJS_VERSION: ${{ matrix.version }}
       NEXE_ASSET: ${{ github.workspace }}/nexe-asset
@@ -39,8 +39,8 @@ jobs:
           echo "NODEJS_VERSION=$(node -p process.versions.node)" >> $env:GITHUB_ENV
           echo "NODEJS_VERSION=$(node -p process.versions.node)" >> "${GITHUB_ENV}"
       
-      - name: Upgrade NPM
-        run: npm install -g npm
+      - name: Change NPM version
+        run: npm install -g npm@6.14
       - run: npm ci
       - uses: actions/setup-python@v2
         with:
