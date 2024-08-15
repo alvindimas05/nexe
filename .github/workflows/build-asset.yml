@@ -38,9 +38,12 @@ jobs:
         run: |
           echo "NODEJS_VERSION=$(node -p process.versions.node)" >> $env:GITHUB_ENV
           echo "NODEJS_VERSION=$(node -p process.versions.node)" >> "${GITHUB_ENV}"
-      
+
+      - name: Reset Package Lock
+        run: rm package-lock.json
       - name: Change NPM version
         run: npm install -g npm@6.14
+        
       - run: npm ci
       - uses: actions/setup-python@v2
         with:
